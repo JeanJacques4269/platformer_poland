@@ -20,7 +20,7 @@ def empty_level() -> dict:
         'beams2': [],
         'coins': [],
         'ghosts': [],
-        'door': Door(0, 0),
+        'door': None,
         'background': Camera(),
         'serce': [],
     }
@@ -28,24 +28,30 @@ def empty_level() -> dict:
 
 def level_1():
     return {
-        "nb_level": 1,
+        'nb_level': 1,
         'beams': [
-            Beam(0, 620, 1),
-            Beam(250, 658, 1),
-            Beam(500, 620, 1),
-            Beam(700, 550, 0),
-            Beam(859, 550, 1),
-            Beam(1200, 550, 1)
+            Beam(0, 620, 1, rotation=0),
+            Beam(250, 658, 1, rotation=0),
+            Beam(500, 620, 1, rotation=0),
+            Beam(700, 550, 0, rotation=0),
+            Beam(859, 550, 1, rotation=0),
+            Beam(1200, 550, 1, rotation=0),
         ],
-        'beams2': [],
         'coins': [
             Coin(300, 620),
             Coin(550, 590),
         ],
-        'ghosts': [Ghost(700, 480)],
-        'door': Door(1270, 450),
-        'background': Camera(),
-        'serce': [Serce(750, 450)]
+        'beams2': [
+        ],
+        'ghosts': [
+            Ghost(838, 473),
+        ],
+        'serce': [
+            Serce(750, 450),
+        ],
+        'door': Door(1234, 349),
+        "background": Camera(),
+
     }
 
 
@@ -389,9 +395,221 @@ def level_7() -> dict:
     }
 
 
+def level_8():
+    return {
+        'nb_level': 8,
+        'beams': [
+            Beam(0, 1291, 1, rotation=0),
+            Beam(158, 1292, 1, rotation=0),
+            Beam(317, 1292, 1, rotation=0),
+            Beam(317, 1252, 1, rotation=0),
+            Beam(700, 1232, 1, rotation=0),
+            Beam(1049, 1132, 1, rotation=0),
+            Beam(1364, 977, 1, rotation=0),
+            Beam(1365, 1017, 1, rotation=0),
+            Beam(1365, 1057, 1, rotation=0),
+            Beam(1365, 1097, 1, rotation=0),
+            Beam(1364, 1137, 1, rotation=0),
+            Beam(1363, 1176, 1, rotation=0),
+            Beam(1363, 1214, 1, rotation=0),
+            Beam(1521, 1215, 1, rotation=0),
+            Beam(1679, 1215, 1, rotation=0),
+            Beam(1838, 1216, 1, rotation=0),
+            Beam(1996, 1216, 1, rotation=0),
+            Beam(2155, 1215, 1, rotation=0),
+            Beam(2313, 1216, 1, rotation=0),
+            Beam(2470, 1217, 1, rotation=0),
+            Beam(2468, 1177, 1, rotation=0),
+            Beam(2626, 1178, 1, rotation=0),
+            Beam(2630, 1217, 1, rotation=0),
+            Beam(2626, 1140, 1, rotation=0),
+            Beam(2626, 1101, 1, rotation=0),
+            Beam(2783, 1064, 1, rotation=0),
+            Beam(2940, 1025, 1, rotation=0),
+            Beam(2693, 866, 1, rotation=0),
+            Beam(2534, 866, 1, rotation=0),
+            Beam(2534, 827, 1, rotation=0),
+            Beam(2377, 827, 1, rotation=0),
+            Beam(2378, 1014, 1, rotation=0),
+            Beam(2225, 1012, 1, rotation=0),
+            Beam(2069, 1012, 1, rotation=0),
+            Beam(2220, 827, 1, rotation=0),
+            Beam(2067, 972, 1, rotation=0),
+            Beam(2066, 933, 1, rotation=0),
+            Beam(2064, 895, 1, rotation=0),
+            Beam(2063, 856, 1, rotation=0),
+            Beam(2063, 828, 1, rotation=0),
+            Beam(2062, 788, 1, rotation=0),
+            Beam(2061, 750, 1, rotation=0),
+            Beam(2059, 711, 1, rotation=0),
+            Beam(2060, 672, 1, rotation=0),
+            Beam(2060, 632, 1, rotation=0),
+            Beam(2059, 592, 1, rotation=0),
+            Beam(2059, 553, 1, rotation=0),
+            Beam(2058, 513, 1, rotation=0),
+            Beam(2057, 472, 1, rotation=0),
+            Beam(2056, 432, 1, rotation=0),
+            Beam(2218, 672, 1, rotation=0),
+            Beam(2056, 392, 1, rotation=0),
+            Beam(2217, 513, 1, rotation=0),
+            Beam(2055, 352, 1, rotation=0),
+            Beam(2214, 353, 1, rotation=0),
+            Beam(2055, 312, 1, rotation=0),
+            Beam(2054, 273, 1, rotation=0),
+            Beam(1897, 272, 1, rotation=0),
+            Beam(1738, 272, 1, rotation=0),
+            Beam(1736, 232, 1, rotation=0),
+            Beam(1736, 191, 1, rotation=0),
+            Beam(1735, 151, 1, rotation=0),
+            Beam(1735, 111, 1, rotation=0),
+            Beam(1893, 111, 1, rotation=0),
+            Beam(2053, 111, 1, rotation=0),
+            Beam(2615, 352, 1, rotation=0),
+            Beam(2988, 335, 1, rotation=0),
+            Beam(3352, 360, 1, rotation=0),
+            Beam(3731, 481, 1, rotation=0),
+            Beam(4049, 646, 1, rotation=0),
+            Beam(4207, 647, 1, rotation=0),
+            Beam(4366, 646, 1, rotation=0),
+            Beam(3058, 867, 1, rotation=1),
+            Beam(3056, 710, 1, rotation=1),
+            Beam(595, 1231, 1, rotation=0),
+            Beam(975, 1132, 1, rotation=0),
+            Beam(1281, 1018, 1, rotation=0),
+            Beam(2533, 352, 1, rotation=0),
+            Beam(2926, 335, 1, rotation=0),
+            Beam(3309, 359, 1, rotation=0),
+            Beam(3660, 480, 1, rotation=0),
+        ],
+        'coins': [
+            Coin(3780, 432),
+            Coin(758, 1187),
+            Coin(1105, 1090),
+            Coin(1413, 937),
+            Coin(2116, 1161),
+            Coin(2331, 939),
+            Coin(2277, 775),
+            Coin(3403, 315),
+            Coin(660, 1188),
+            Coin(1913, 235),
+            Coin(1913, 192),
+            Coin(1983, 192),
+            Coin(1986, 236),
+        ],
+        'beams2': [
+            Beam2(2071, 1053, rotation=2),
+            Beam2(2111, 1053, rotation=2),
+            Beam2(2151, 1053, rotation=2),
+            Beam2(2191, 1053, rotation=2),
+        ],
+        'ghosts': [
+            Ghost(2557, 745),
+        ],
+        'serce': [
+            Serce(2244, 574),
+        ],
+        'door': Door(4416, 446),
+
+        'background': Camera(),
+
+    }
+
+
+def level_9():
+    return {
+        'nb_level': 9,
+        'beams': [
+            Beam(1, 905, 1, rotation=0),
+            Beam(159, 905, 1, rotation=0),
+            Beam(316, 905, 1, rotation=0),
+            Beam(475, 904, 1, rotation=0),
+            Beam(741, 1011, 1, rotation=0),
+            Beam(1042, 946, 1, rotation=0),
+            Beam(1323, 862, 1, rotation=0),
+            Beam(1623, 835, 1, rotation=0),
+            Beam(1883, 923, 1, rotation=0),
+            Beam(2113, 994, 1, rotation=0),
+            Beam(2354, 1070, 1, rotation=0),
+            Beam(2631, 1077, 1, rotation=0),
+            Beam(2914, 1080, 1, rotation=0),
+            Beam(3073, 1081, 1, rotation=0),
+            Beam(3231, 1080, 1, rotation=0),
+            Beam(3390, 1080, 1, rotation=0),
+            Beam(3547, 1080, 1, rotation=0),
+            Beam(3703, 1079, 1, rotation=0),
+            Beam(3861, 1078, 1, rotation=0),
+            Beam(4020, 1079, 1, rotation=0),
+            Beam(2875, 1080, 1, rotation=1),
+            Beam(2875, 1119, 1, rotation=1),
+            Beam(2914, 1238, 1, rotation=0),
+            Beam(3071, 1239, 1, rotation=0),
+            Beam(3230, 1239, 1, rotation=0),
+            Beam(3388, 1240, 1, rotation=0),
+            Beam(3547, 1241, 1, rotation=0),
+            Beam(3705, 1241, 1, rotation=0),
+            Beam(3863, 1242, 1, rotation=0),
+            Beam(4022, 1242, 1, rotation=0),
+            Beam(4021, 1040, 1, rotation=0),
+            Beam(4372, 989, 1, rotation=0),
+            Beam(4372, 1029, 1, rotation=0),
+            Beam(4661, 933, 1, rotation=0),
+            Beam(4661, 972, 1, rotation=0),
+            Beam(4883, 877, 1, rotation=0),
+            Beam(4883, 918, 1, rotation=0),
+            Beam(4848, 1130, 1, rotation=0),
+            Beam(4800, 1129, 1, rotation=0),
+            Beam(4632, 1285, 1, rotation=0),
+            Beam(4236, 1372, 1, rotation=0),
+            Beam(4340, 1191, 1, rotation=0),
+            Beam(4832, 1531, 1, rotation=0),
+            Beam(4653, 1683, 1, rotation=0),
+            Beam(4395, 1687, 1, rotation=0),
+            Beam(4141, 1690, 1, rotation=0),
+            Beam(3914, 1690, 1, rotation=0),
+            Beam(3754, 1690, 1, rotation=0),
+            Beam(3595, 1690, 1, rotation=0),
+            Beam(3851, 1690, 1, rotation=0),
+            Beam(3437, 1690, 1, rotation=0),
+            Beam(3279, 1690, 1, rotation=0),
+            Beam(3120, 1690, 1, rotation=0),
+            Beam(2961, 1690, 1, rotation=0),
+        ],
+        'coins': [
+            Coin(1100, 895),
+            Coin(1677, 789),
+            Coin(2159, 949),
+            Coin(2949, 1187),
+            Coin(3084, 1186),
+            Coin(3230, 1187),
+            Coin(3379, 1189),
+            Coin(3518, 1188),
+            Coin(3664, 1188),
+            Coin(3819, 1190),
+            Coin(3981, 1186),
+            Coin(4926, 834),
+            Coin(3735, 1646),
+            Coin(3509, 1644),
+            Coin(3289, 1639),
+        ],
+        'beams2': [
+            Beam2(3421, 1671, rotation=0),
+            Beam2(3624, 1670, rotation=0),
+            Beam2(3832, 1673, rotation=0),
+            Beam2(3199, 1671, rotation=0),
+        ],
+        'ghosts': [
+        ],
+        'serce': [
+            Serce(4074, 1151),
+        ],
+        'door': Door(2978, 1489),
+        "background": Camera(),
+    }
+
+
 class Game:
     def __init__(self, player):
-        self.levels = [level_1, level_2, level_3, level_4, level_5, level_6, level_7]
+        self.levels = [level_1, level_2, level_3, level_4, level_5, level_6, level_7, level_8, level_9]
         self.current_level = None
 
         self.serca = None
@@ -476,7 +694,9 @@ class Game:
             beam2.draw(window, self.camera)
 
         self.player.draw(window, self.camera)
-        self.door.draw(window, self.camera)
+
+        if self.door:
+            self.door.draw(window, self.camera)
 
         for e in self.ghosts + self.coins + self.serca:
             e.draw(window, self.camera)
@@ -1197,7 +1417,7 @@ class Game:
 #         pygame.display.update()
 
 
-def main():
+def main(first_level):
     run = True
 
     player = Player('John')
@@ -1216,7 +1436,7 @@ def main():
                 run = False
 
         if play_button.tick():
-            game.load_level(level_7())
+            game.load_level(first_level())
             game.run()
             run = False
 
@@ -1226,11 +1446,49 @@ def main():
         pygame.display.update()
 
 
-def level_editor():
+def level_editor(level_to_edit):
+    def print_format(level: dict):
+        """
+        Prints the level in the correct format to then copy and paste it to the according function
+        """
+        print("{")
+        print(f"'nb_level' : {level['nb_level']},")
+        print(f"'beams' : [")
+        for beam in level['beams']:
+            print(f"Beam({beam.x_cord}, {beam.y_cord}, {beam.number}, rotation={beam.rotation}),")
+        print("],")
+
+        print(f"'coins' : [")
+        for coin in level['coins']:
+            print(f"Coin({coin.x_cord}, {coin.y_cord}),")
+        print("],")
+
+        print(f"'beams2' : [")
+        for beam2 in level['beams2']:
+            print(f"Beam2({beam2.x_cord}, {beam2.y_cord}, rotation={beam2.rotation}),")
+        print("],")
+
+        print(f"'ghosts' : [")
+        for ghost in level['ghosts']:
+            print(f"Ghost({ghost.x_cord}, {ghost.y_cord}),")
+        print("],")
+
+        print(f"'serce' : [")
+        for heart in level['serce']:
+            print(f"Serce({heart.x_cord}, {heart.y_cord}),")
+        print("],")
+
+        if level['door']:
+            print(f"'door' : Door({level['door'].x_cord}, {level['door'].y_cord}),")
+
+        print("background:Camera(),")
+        print("}")
+        print()
+
     run = True
     clock = pygame.time.Clock()
 
-    level = empty_level()
+    level = level_to_edit()
 
     beam_img = pygame.image.load('trawa160X40.png')
     beam_img.set_alpha(100)
@@ -1244,10 +1502,22 @@ def level_editor():
     ghost_img = pygame.image.load('Sprites/ghost.png')
     ghost_img.set_alpha(100)
 
+    heart_img = pygame.image.load('Sprites/heart.png')
+    heart_img.set_alpha(100)
+
+    door_img = pygame.image.load('Sprites/drzwi.png')
+    door_img.set_alpha(100)
+
     player = Player('John')
     editor_game = Game(player)
 
-    imgs = {"beam": beam_img, "coin": coin_img, "beam2": beam2_img, "ghost": ghost_img}
+    imgs = {"beam": beam_img,
+            "coin": coin_img,
+            "beam2": beam2_img,
+            "ghost": ghost_img,
+            "heart": heart_img,
+            "door": door_img
+            }
     selected = "beam"
 
     # list to store actions taken in the level editor
@@ -1293,6 +1563,18 @@ def level_editor():
                     level["ghosts"].append(ghost)
                     actions.append({"type": "add", "object": "ghost", "data": ghost})
 
+                elif selected == "heart":
+                    heart = Serce(event.pos[0] - editor_game.camera.x_cord,
+                                  event.pos[1] - editor_game.camera.y_cord)
+                    level["serce"].append(heart)
+                    actions.append({"type": "add", "object": "heart", "data": heart})
+
+                elif selected == "door":
+                    door = Door(event.pos[0] - editor_game.camera.x_cord,
+                                event.pos[1] - editor_game.camera.y_cord)
+                    level["door"] = door
+                    actions.append({"type": "add", "object": "door", "data": door})
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     print_format(level)
@@ -1304,6 +1586,10 @@ def level_editor():
                     selected = "beam2"
                 if event.key == pygame.K_g:
                     selected = "ghost"
+                if event.key == pygame.K_h:
+                    selected = "heart"
+                if event.key == pygame.K_d:
+                    selected = "door"
 
                 if event.key == pygame.K_z and pygame.key.get_mods() & pygame.KMOD_CTRL:
                     if actions:
@@ -1319,7 +1605,10 @@ def level_editor():
                                 level["beams2"].remove(last_action["data"])
                             elif last_action["object"] == "ghost":
                                 level["ghosts"].remove(last_action["data"])
-
+                            elif last_action["object"] == "heart":
+                                level["serce"].remove(last_action["data"])
+                            elif last_action["object"] == "door":
+                                level["door"] = None
                 if event.key == pygame.K_r:
                     rotation += 1
                     rotation %= 4
@@ -1333,6 +1622,16 @@ def level_editor():
         if pygame.key.get_pressed()[pygame.K_DOWN]:
             editor_game.camera.y_cord -= 10
 
+        # bounds
+        if editor_game.camera.x_cord > 0:
+            editor_game.camera.x_cord = 0
+        if editor_game.camera.y_cord > 0:
+            editor_game.camera.y_cord = 0
+        if editor_game.camera.x_cord < -editor_game.camera.width + resolution[0]:
+            editor_game.camera.x_cord = -editor_game.camera.width + resolution[0]
+        if editor_game.camera.y_cord < -editor_game.camera.height + resolution[1]:
+            editor_game.camera.y_cord = -editor_game.camera.height + resolution[1]
+
         editor_game.draw()
         img_to_show = imgs[selected]
         img_to_show = pygame.transform.rotate(img_to_show, rotation * 90)
@@ -1341,32 +1640,5 @@ def level_editor():
         pygame.display.flip()
 
 
-def print_format(level: dict):
-    print("{")
-    print(f"'nb_level' : {level['nb_level']},")
-    print(f"'beams' : [")
-    for beam in level['beams']:
-        print(f"Beam({beam.x_cord}, {beam.y_cord}, {beam.number}, rotation={beam.rotation}),")
-    print("],")
-
-    print(f"'coins' : [")
-    for coin in level['coins']:
-        print(f"Coin({coin.x_cord}, {coin.y_cord}),")
-    print("],")
-
-    print(f"'beams2' : [")
-    for beam2 in level['beams2']:
-        print(f"Beam2({beam2.x_cord}, {beam2.y_cord}, rotation={beam2.rotation}),")
-    print("],")
-
-    print(f"'ghosts' : [")
-    for ghost in level['ghosts']:
-        print(f"Ghost({ghost.x_cord}, {ghost.y_cord}),")
-    print("],")
-
-    print("}")
-    print()
-
-
 if __name__ == "__main__":
-    main()
+    main(level_1)

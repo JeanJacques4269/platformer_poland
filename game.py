@@ -126,7 +126,7 @@ class Button:
             window.blit(self.button_image, (self.x_cord, self.y_cord))
 
 
-class ButtonLevelMenu():
+class ButtonLevelMenu:
     """
     Button class for level menu (optimized for it)
     """
@@ -437,6 +437,7 @@ class Beam:
 
 
 class Camera:
+    """used to be called Background"""
 
     def __init__(self):
         self.x_cord = 0
@@ -448,7 +449,7 @@ class Camera:
     def tick(self, player):
         """smooth camera movement"""
         half_screen_width = resolution[0] / 2
-        three_quarter_screen_height = resolution[1] * 3 / 4
+        three_quarter_screen_height = resolution[1] * 5/8
         # horizontal movement
         target_x_cord = 0
         if player.x_cord < half_screen_width:
@@ -459,7 +460,7 @@ class Camera:
             target_x_cord = -player.x_cord + half_screen_width
         self.x_cord += (target_x_cord - self.x_cord) * 0.1
 
-        # rotation movement
+        # vertical movement
         target_y_cord = 0
         if player.y_cord < three_quarter_screen_height:
             target_y_cord = 0
