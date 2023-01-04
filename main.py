@@ -621,6 +621,7 @@ class Game:
         self.beams2 = None
         self.beams = None
 
+        self.label_score = Text(970, 10)
         self.score = 0
 
     def load_level(self, level: dict):
@@ -663,7 +664,7 @@ class Game:
         self.camera.tick(self.player)
         self.player.tick(keys, self.beams, self.beams2, delta)
         for ghost in self.ghosts:
-            ghost.tick(self.beams, self.beams2, self.player, ghost.start_x - 200, ghost.start_x + 200, delta)
+            ghost.tick(self.beams, self.beams2, self.player, ghost.start_x - 120, ghost.start_x + 120, delta)
         for coin in self.coins:
             coin.tick()
         for beam2 in self.beams2:
@@ -671,7 +672,7 @@ class Game:
         for coin in self.coins:
             if coin.hitbox.colliderect(self.player.hitbox):
                 self.coins.remove(coin)
-                self.score += 1
+                self.score += 100
         for serce in self.serca:
             if serce.hitbox.colliderect(self.player.hitbox) and self.player.health < 100:
                 self.serca.remove(serce)
@@ -698,8 +699,9 @@ class Game:
         if self.door:
             self.door.draw(window, self.camera)
 
-        for e in self.ghosts + self.coins + self.serca:
+        for e in self.coins + self.serca + self.ghosts:
             e.draw(window, self.camera)
+        self.label_score.draw(window, self.score)
 
     def go_to_next_level(self):
         self.player.x_cord = 0
@@ -743,7 +745,11 @@ class Game:
 
             if menu_button.tick():
                 run = False
-                self.menu()
+                self.menu_level()
+
+            if shop_button.tick():
+                run = False
+                self.shop(self.score, current_level)
 
             window.blit(background, (0, 0))
             window.blit(text, (400, 300))
@@ -753,7 +759,7 @@ class Game:
 
             pygame.display.flip()
 
-    def menu(self):
+    def menu_level(self):
         n = len(self.levels)
         run = True
         clock = pygame.time.Clock()
@@ -792,6 +798,63 @@ class Game:
 
             pygame.display.update()
 
+    def shop(self, score, level):
+        run = True
+        clock = 0
+        text = Text(950, 10)
+        background = pygame.image.load('Sprites/main menu/menu_background.png')
+        postacie = ['John', 'Jan']
+        active = [True, False]
+        price = [0, 2]
+        shop_button = Button(100, 100, "Sprites/next_level/next")
+        active_button = Button(100, 350, "Sprites/active")
+        lock_button = Button(100, 350, "Sprites/lock")
+        buy_button = Button(800, 350, "Sprites/buy")
+        left = Button(50, 500, "Sprites/strzalka")
+        i = 0
+        right = Button(1000, 500, "Sprites/strzalkapr")
+        while run:
+            clock += pygame.time.Clock().tick(60) / 1000  # maksymalnie 60 fps
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:  # jeśli gracz zamknie okienko
+                    run = False
+
+            if shop_button.tick():
+                self.resume(level)
+            if active_button.tick() and active[i]:
+                player = Player(postacie[i])
+            if buy_button.tick() and score - price[i] >= 0:
+                score -= price[i]
+                price[i] = 0
+                active[i] = True
+
+            if left.tick():
+                if i > 0:
+                    i -= 1
+            if right.tick():
+                if i < len(postacie) - 1:
+                    i += 1
+
+            window.blit(background, (0, 0))
+
+            pygame.draw.rect(window, [200, 200, 200],
+                             pygame.Rect(360, 300, 400, 400))
+            window.blit(pygame.image.load(f'Sprites/{postacie[i]}/stand.png'),
+                        (560, 500))
+            shop_button.draw(window)
+            left.draw(window)
+            right.draw(window)
+            if active[i]:
+                active_button.draw(window)
+            else:
+                lock_button.draw(window)
+
+            buy_button.draw(window)
+            text.draw(window, score)
+
+            pygame.display.update()
+
 
 # def level_1(score, level, player_obj):
 #     run = True
@@ -801,7 +864,7 @@ class Game:
 #     player = player_obj
 #     ghost = Ghost(700, 480)
 #     background = Background()
-#     text = Text(970, 10)
+
 #
 #     beams = [
 #         Beam(0, 620, 1),
@@ -1306,64 +1369,6 @@ class Game:
 #         play_button.draw(window)
 #         shop_button.draw(window)
 #         menu_button.draw(window)
-#
-#         pygame.display.update()
-
-
-# def shop(score, level, player: Player):
-#     run = True
-#     clock = 0
-#     text = Text(950, 10)
-#     background = pygame.image.load('Sprites/main menu/menu_background.png')
-#     postacie = ['John', 'Jan']
-#     active = [True, False]
-#     price = [0, 2]
-#     shop_button = Button(100, 100, "Sprites/next_level/next")
-#     active_button = Button(100, 350, "Sprites/active")
-#     lock_button = Button(100, 350, "Sprites/lock")
-#     buy_button = Button(800, 350, "Sprites/buy")
-#     left = Button(50, 500, "Sprites/strzalka")
-#     i = 0
-#     right = Button(1000, 500, "Sprites/strzalkapr")
-#     while run:
-#         clock += pygame.time.Clock().tick(60) / 1000  # maksymalnie 60 fps
-#         events = pygame.event.get()
-#         for event in events:
-#             if event.type == pygame.QUIT:  # jeśli gracz zamknie okienko
-#                 run = False
-#
-#         if shop_button.tick():
-#             resume(score, level, player)
-#         if active_button.tick() and active[i] == True:
-#             player = Player(postacie[i])
-#         if buy_button.tick() and score - price[i] >= 0:
-#             score -= price[i]
-#             price[i] = 0
-#             active[i] = True
-#
-#         if left.tick():
-#             if i > 0:
-#                 i -= 1
-#         if right.tick():
-#             if i < len(postacie) - 1:
-#                 i += 1
-#
-#         window.blit(background, (0, 0))
-#
-#         pygame.draw.rect(window, [200, 200, 200],
-#                          pygame.Rect(360, 300, 400, 400))
-#         window.blit(pygame.image.load(f'Sprites/{postacie[i]}/stand.png'),
-#                     (560, 500))
-#         shop_button.draw(window)
-#         left.draw(window)
-#         right.draw(window)
-#         if active[i] == True:
-#             active_button.draw(window)
-#         else:
-#             lock_button.draw(window)
-#
-#         buy_button.draw(window)
-#         text.draw(window, score)
 #
 #         pygame.display.update()
 
