@@ -146,7 +146,7 @@ def level_5() -> dict:
     I modified this level because yours was uncompleted
     """
     return {
-        "nb_level": 6,
+        "nb_level": 5,
         'beams': [
             Beam(0, 600, 2),
             Beam(250, 600, 2),
@@ -607,9 +607,139 @@ def level_9():
     }
 
 
+def level_10():
+    return {
+        'nb_level': 10,
+        "spawn": (19, 561),
+        'beams': [
+            Beam(2, 652, 1, rotation=0),
+            Beam(160, 652, 1, rotation=0),
+            Beam(319, 652, 1, rotation=0),
+            Beam(478, 652, 1, rotation=0),
+            Beam(637, 652, 1, rotation=0),
+            Beam(637, 612, 1, rotation=0),
+            Beam(797, 652, 1, rotation=0),
+            Beam(797, 690, 1, rotation=0),
+            Beam(799, 730, 1, rotation=0),
+            Beam(800, 770, 1, rotation=0),
+            Beam(1157, 651, 1, rotation=0),
+            Beam(1156, 691, 1, rotation=0),
+            Beam(1155, 730, 1, rotation=0),
+            Beam(1155, 769, 1, rotation=0),
+            Beam(1316, 651, 1, rotation=0),
+            Beam(1316, 611, 1, rotation=0),
+            Beam(1315, 571, 1, rotation=0),
+            Beam(1314, 531, 1, rotation=0),
+            Beam(1312, 492, 1, rotation=0),
+            Beam(1311, 452, 1, rotation=0),
+            Beam(1310, 412, 1, rotation=0),
+            Beam(1309, 372, 1, rotation=0),
+            Beam(1308, 332, 1, rotation=0),
+            Beam(1307, 293, 1, rotation=0),
+            Beam(1149, 293, 1, rotation=0),
+            Beam(990, 292, 1, rotation=0),
+            Beam(831, 291, 1, rotation=0),
+            Beam(673, 291, 1, rotation=0),
+            Beam(515, 291, 1, rotation=0),
+            Beam(357, 291, 1, rotation=0),
+            Beam(200, 291, 1, rotation=0),
+            Beam(43, 290, 1, rotation=0),
+            Beam(1, 291, 1, rotation=0),
+            Beam(631, 330, 1, rotation=0),
+            Beam(1155, 810, 1, rotation=0),
+            Beam(1157, 851, 1, rotation=0),
+            Beam(1159, 891, 1, rotation=0),
+            Beam(1161, 930, 1, rotation=0),
+            Beam(1160, 970, 1, rotation=0),
+            Beam(1001, 970, 1, rotation=0),
+            Beam(843, 969, 1, rotation=0),
+            Beam(684, 968, 1, rotation=0),
+            Beam(525, 968, 1, rotation=0),
+            Beam(368, 969, 1, rotation=0),
+            Beam(637, 691, 1, rotation=0),
+            Beam(376, 692, 1, rotation=0),
+            Beam(369, 1009, 1, rotation=2),
+            Beam(371, 1048, 1, rotation=0),
+            Beam(375, 1233, 1, rotation=0),
+            Beam(215, 1234, 1, rotation=0),
+            Beam(58, 1234, 1, rotation=0),
+            Beam(1, 1234, 1, rotation=0),
+            Beam(347, 1233, 1, rotation=0),
+            Beam(657, 1235, 1, rotation=0),
+            Beam(931, 1198, 1, rotation=0),
+            Beam(1256, 1244, 1, rotation=0),
+            Beam(1413, 1205, 1, rotation=0),
+            Beam(1571, 1164, 1, rotation=0),
+            Beam(1841, 1168, 1, rotation=0),
+            Beam(2001, 1210, 1, rotation=0),
+            Beam(2160, 1250, 1, rotation=0),
+            Beam(2320, 1292, 1, rotation=0),
+            Beam(2476, 1253, 1, rotation=0),
+            Beam(2469, 1046, 1, rotation=0),
+            Beam(2636, 1295, 1, rotation=0),
+            Beam(2794, 1335, 1, rotation=0),
+            Beam(3167, 1413, 1, rotation=0),
+            Beam(3009, 1412, 1, rotation=0),
+            Beam(3326, 1413, 1, rotation=0),
+        ],
+        'coins': [
+            Coin(1202, 599),
+            Coin(563, 817),
+            Coin(845, 1116),
+            Coin(1771, 1063),
+        ],
+        'beams2': [
+            Beam2(640, 594, rotation=0),
+            Beam2(680, 594, rotation=0),
+            Beam2(723, 595, rotation=0),
+            Beam2(752, 594, rotation=0),
+            Beam2(633, 370, rotation=2),
+            Beam2(676, 370, rotation=2),
+            Beam2(717, 371, rotation=2),
+            Beam2(747, 371, rotation=2),
+            Beam2(641, 732, rotation=2),
+            Beam2(686, 732, rotation=2),
+            Beam2(727, 733, rotation=2),
+            Beam2(754, 732, rotation=2),
+            Beam2(377, 732, rotation=2),
+            Beam2(418, 733, rotation=2),
+            Beam2(465, 733, rotation=2),
+            Beam2(490, 734, rotation=2),
+            Beam2(1418, 1188, rotation=0),
+            Beam2(1456, 1187, rotation=0),
+            Beam2(1496, 1187, rotation=0),
+            Beam2(1525, 1187, rotation=0),
+            Beam2(2004, 1191, rotation=0),
+            Beam2(2044, 1191, rotation=0),
+            Beam2(2085, 1192, rotation=0),
+            Beam2(2116, 1191, rotation=0),
+            Beam2(2636, 1277, rotation=0),
+            Beam2(2674, 1277, rotation=0),
+            Beam2(2712, 1276, rotation=0),
+            Beam2(2751, 1277, rotation=0),
+            Beam2(2468, 1086, rotation=2),
+            Beam2(2509, 1086, rotation=2),
+            Beam2(2549, 1086, rotation=2),
+            Beam2(2587, 1085, rotation=2),
+            Beam2(2316, 1274, rotation=0),
+            Beam2(2354, 1274, rotation=0),
+            Beam2(2394, 1274, rotation=0),
+            Beam2(2434, 1274, rotation=0),
+        ],
+        'ghosts': [
+            Ghost(564, 889),
+        ],
+        'serce': [
+        ],
+        'door': Door(3379, 1214),
+        "background": Camera(),
+
+    }
+
+
 class Game:
     def __init__(self, player):
-        self.levels = [level_1, level_2, level_3, level_4, level_5, level_6, level_7, level_8, level_9]
+        self.levels = [level_1, level_2, level_3, level_4, level_5, level_6, level_7, level_8, level_9, level_10]
         self.current_level = None
 
         self.serca = None
@@ -634,11 +764,22 @@ class Game:
         self.camera = level['background']
         self.serca = level['serce']  # hearts
 
+        if "spawn" in level:
+            print("Loading spawn")
+            self.player.x_cord = level["spawn"][0]
+            self.player.y_cord = level["spawn"][1]
+        else:
+            print("No spawn found")
+            self.player.x_cord = 0
+            self.player.y_cord = 0
+
     def run(self):
         run = True
         pause = False
 
         clock = pygame.time.Clock()
+
+        print(f"Player pos : {self.player.x_cord}, {self.player.y_cord}")
         while run:
             delta = clock.tick(60)
 
@@ -656,6 +797,7 @@ class Game:
 
             if not self.player.alive:
                 run = False
+                self.player.ver_velocity = 0
 
         self.resume(self.current_level)
 
@@ -717,9 +859,6 @@ class Game:
         clock = pygame.time.Clock()
         background = pygame.image.load('Sprites/main menu/menu_background.png').convert_alpha()
 
-        self.player.x_cord = 0
-        self.player.y_cord = 0
-
         # reset player if it died
         if not self.player.alive:
             self.player.health = 100
@@ -739,13 +878,15 @@ class Game:
                     pygame.quit()
 
             if play_button.tick():
+                run = False
                 self.load_level(self.levels[current_level - 1]())
                 self.run()
-                run = False
+                return
 
             if menu_button.tick():
                 run = False
                 self.menu_level()
+                return
 
             if shop_button.tick():
                 run = False
@@ -766,7 +907,6 @@ class Game:
         background = pygame.image.load('Sprites/main menu/menu_background.png').convert_alpha()
 
         level_buttons = []
-        font = pygame.font.SysFont('None', 50)
         for i in range(n):
             btn = ButtonLevelMenu(170 + 200 * (i % 5), 400 + 150 * (i // 5), f"{i + 1}")
             level_buttons.append(btn)
@@ -1646,4 +1786,4 @@ def level_editor(level_to_edit):
 
 
 if __name__ == "__main__":
-    main(level_1)
+    main(level_10)
