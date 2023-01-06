@@ -12,6 +12,7 @@ class Game:
     def __init__(self, player):
         self.levels = [level_1, level_2, level_3, level_4, level_5, level_6, level_7, level_8, level_9, level_10]
         self.current_level = None
+        self.attainable_levels = 1
 
         self.serca = None
         self.camera = None
@@ -39,11 +40,9 @@ class Game:
         self.serca = level['serce']  # hearts
 
         if "spawn" in level:
-            print("Loading spawn")
             self.player.x_cord = level["spawn"][0]
             self.player.y_cord = level["spawn"][1]
         else:
-            print("No spawn found")
             self.player.x_cord = 0
             self.player.y_cord = 0
 
@@ -53,7 +52,6 @@ class Game:
 
         clock = pygame.time.Clock()
 
-        print(f"Player pos : {self.player.x_cord}, {self.player.y_cord}")
         while run:
             delta = clock.tick(60)
 
@@ -120,8 +118,7 @@ class Game:
         self.label_score.draw(window, self.score)
 
     def go_to_next_level(self):
-        self.player.x_cord = 0
-        self.player.y_cord = 0
+        self.attainable_levels += 1
         if self.current_level < len(self.levels):
             self.load_level(self.levels[self.current_level]())
         else:
@@ -173,7 +170,7 @@ class Game:
             pygame.display.flip()
 
     def level_selection(self):
-        n = len(self.levels)
+        n = self.attainable_levels
         run = True
         clock = pygame.time.Clock()
         background = pygame.image.load('Sprites/main menu/menu_background.png').convert_alpha()
@@ -245,13 +242,11 @@ class Game:
             if btn_buy.tick(events) and not self.skins[current_skin]["acquired"]:
                 price = self.skins[current_skin]["price"]
                 if self.score >= price:
-                    print("bought")
                     self.score -= price
                     self.skins[current_skin]["acquired"] = True
 
             if btn_equip.tick(events):
                 if self.skins[current_skin]["acquired"] and current_skin != self.active_skin:
-                    print("equipped")
                     self.active_skin = current_skin
                     self.player.load_skin(current_skin)
 
@@ -863,7 +858,7 @@ def main(first_level):
                 run = False
 
         if play_button.tick():
-            game.load_level(first_level())
+            game.load_level(first_level)
             game.run()
             run = False
 
@@ -915,7 +910,7 @@ def level_editor(level_to_edit):
     run = True
     clock = pygame.time.Clock()
 
-    level = level_to_edit()
+    level = level_to_edit
 
     beam_img = pygame.image.load('trawa160X40.png')
     beam_img.set_alpha(100)
@@ -1068,4 +1063,4 @@ def level_editor(level_to_edit):
 
 
 if __name__ == "__main__":
-    main(level_1)
+    main(level_1())

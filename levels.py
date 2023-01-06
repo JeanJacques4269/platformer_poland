@@ -48,26 +48,33 @@ def level_1():
 
 def level_2():
     return {
-        "nb_level": 2,
+        'nb_level': 2,
         'beams': [
-            Beam(0, 500, 1),  # 720 max na dole
-            Beam(250, 650, 1),
-            Beam(870, 650, 0),  # duszek
-            # Beam(1029, 650, 1),#duszek
-            Beam(1300, 500, 1),
-            Beam(1650, 650, 1),
-            Beam(1809, 650, 1),
+            Beam(0, 500, 1, rotation=0),
+            Beam(250, 650, 1, rotation=0),
+            Beam(870, 650, 0, rotation=0),
+            Beam(1300, 500, 1, rotation=0),
+            Beam(1650, 650, 1, rotation=0),
+            Beam(1809, 650, 1, rotation=0),
+            Beam(548, 657, 1, rotation=0),
+            Beam(1179, 574, 1, rotation=0),
+            Beam(1478, 592, 1, rotation=0),
         ],
-        'beams2': [Beam2(450, 690),  # 500 x
-                   ],
         'coins': [
             Coin(330, 610),
             Coin(1380, 430),
         ],
-        'ghosts': [Ghost(875, 580)],
+        'beams2': [
+            Beam2(450, 690, rotation=0),
+        ],
+        'ghosts': [
+            Ghost(875, 580),
+        ],
+        'serce': [
+            Serce(900, 500),
+        ],
         'door': Door(1800, 550),
-        'background': Camera(),
-        'serce': [Serce(900, 500)]
+        "background": Camera(),
     }
 
 
