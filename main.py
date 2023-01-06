@@ -1,740 +1,11 @@
-import time
-
 import pygame.display
-
-from game import *
+from levels import level_1, level_2, level_3, level_4, level_5, level_6, level_7, level_8, level_9, level_10
+from objects import *
 from tools.colors import *
 
 pygame.init()
 resolution = (1280, 720)
 window = pygame.display.set_mode(resolution)
-
-
-def empty_level() -> dict:
-    """
-    empty level holding dict
-    """
-    return {
-        "nb_level": 7,
-        'beams': [],
-        'beams2': [],
-        'coins': [],
-        'ghosts': [],
-        'door': None,
-        'background': Camera(),
-        'serce': [],
-    }
-
-
-def level_1():
-    return {
-        'nb_level': 1,
-        'beams': [
-            Beam(0, 620, 1, rotation=0),
-            Beam(250, 658, 1, rotation=0),
-            Beam(500, 620, 1, rotation=0),
-            Beam(700, 550, 0, rotation=0),
-            Beam(859, 550, 1, rotation=0),
-            Beam(1200, 550, 1, rotation=0),
-        ],
-        'coins': [
-            Coin(300, 620),
-            Coin(550, 590),
-        ],
-        'beams2': [
-        ],
-        'ghosts': [
-            Ghost(838, 473),
-        ],
-        'serce': [
-            Serce(750, 450),
-        ],
-        'door': Door(1234, 349),
-        "background": Camera(),
-
-    }
-
-
-def level_2():
-    return {
-        "nb_level": 2,
-        'beams': [
-            Beam(0, 500, 1),  # 720 max na dole
-            Beam(250, 650, 1),
-            Beam(870, 650, 0),  # duszek
-            # Beam(1029, 650, 1),#duszek
-            Beam(1300, 500, 1),
-            Beam(1650, 650, 1),
-            Beam(1809, 650, 1),
-        ],
-        'beams2': [Beam2(450, 690),  # 500 x
-                   ],
-        'coins': [
-            Coin(330, 610),
-            Coin(1380, 430),
-        ],
-        'ghosts': [Ghost(875, 580)],
-        'door': Door(1800, 550),
-        'background': Camera(),
-        'serce': [Serce(900, 500)]
-    }
-
-
-def level_3():
-    return {
-        "nb_level": 3,
-        'beams': [
-            Beam(0, 400, 1),  # 720 max na dole
-            Beam(250, 500, 2),
-            Beam(450, 650, 1),  # sciana 480!!!
-            Beam(700, 550, 0),  #
-            Beam(1020, 550, 1),
-            Beam(1250, 600, 1),
-            Beam(1450, 500, 1),
-            Beam(1700, 430, 2),
-            Beam(1850, 350, 1),
-        ],
-        'beams2': [
-            Beam2(450, 635),
-            Beam2(815, 533)
-        ],
-        'coins': [
-            Coin(250, 480),
-            Coin(730, 520),
-            Coin(1500, 470),
-        ],
-        'ghosts': [],
-        'door': Door(1900, 100),
-        'background': Camera(),
-        'serce': [Serce(500, 550),
-                  Serce(1290, 500), ]
-    }
-
-
-def level_4():
-    return {
-        "nb_level": 4,
-        'beams': [
-            Beam(0, 600, 1),
-            Beam(250, 650, 2),
-            Beam(350, 600, 1),
-            Beam(600, 670, 1),
-            Beam(800, 600, 1),
-            Beam(950, 600, 0),
-            Beam(1270, 600, 0),
-            Beam(1430, 600, 1),
-
-        ],
-        'beams2': [
-            Beam2(800, 350),
-            Beam2(1250, 580),
-        ],
-        'coins': [
-            Coin(240, 630),
-            Coin(650, 640),
-        ],
-        'ghosts': [],
-        'door': Door(1470, 400),
-        'background': Camera(),
-        'serce': [Serce(380, 500),
-                  Serce(1340, 510), ]
-    }
-
-
-def level_5() -> dict:
-    """
-    I modified this level because yours was uncompleted
-    """
-    return {
-        "nb_level": 5,
-        'beams': [
-            Beam(0, 600, 2),
-            Beam(250, 600, 2),
-            Beam(350, 600, 2),
-            Beam(600, 600, 2),
-            Beam(800, 600, 2),
-            Beam(950, 600, 0),
-            Beam(1270, 600, 0),
-            Beam(1430, 600, 1),
-        ],
-        'beams2': [
-            Beam2(800, 350),
-            Beam2(1250, 580), ],
-        'coins': [],
-        'ghosts': [],
-        'door': Door(1470, 400),
-        'background': Camera(),
-        'serce': [Serce(1150, 520), ],
-
-    }
-
-
-def level_6() -> dict:
-    """
-    I modified this level because yours was uncompleted
-    """
-    return {
-        "nb_level": 6,
-        'beams': [
-            # Beginning
-            Beam(0, 600, 0),
-            Beam(320, 601, 0),
-            Beam(640, 602, 0),
-
-            # bridge
-            Beam(960, 500, 1),
-            Beam(1110, 400, 1),
-            Beam(1260, 300, 1),
-            Beam(1460, 300, 1),
-            Beam(1610, 400, 1),
-            Beam(1860, 500, 1),
-            # link
-            Beam(2010, 600, 0),
-            Beam(2330, 601, 0),
-            Beam(2650, 602, 0),
-
-            # stairs
-            Beam(2970, 600, 1),
-            Beam(2970, 560, 1),
-
-            Beam(3130, 600, 1),
-            Beam(3130, 560, 1),
-            Beam(3130, 520, 1),
-
-            Beam(3290, 600, 1),
-            Beam(3290, 560, 1),
-            Beam(3290, 520, 1),
-            Beam(3290, 480, 1),
-
-            # pile
-            Beam(3290, 640, 1),
-            Beam(3290, 680, 1),
-            Beam(3290, 720, 1),
-            Beam(3290, 760, 1),
-            Beam(3290, 800, 1),
-            Beam(3290, 840, 1),
-            Beam(3290, 880, 1),
-            Beam(3290, 920, 1),
-
-            # pile2
-            Beam(3600, 40, 1),
-            Beam(3600, 80, 1),
-            Beam(3600, 120, 1),
-            Beam(3600, 160, 1),
-            Beam(3600, 200, 1),
-            Beam(3600, 240, 1),
-            Beam(3600, 280, 1),
-            Beam(3600, 320, 0),
-
-            Beam(3600, 440, 0),
-            Beam(3600, 480, 1),
-            Beam(3600, 520, 1),
-            Beam(3600, 560, 1),
-            Beam(3600, 600, 1),
-            Beam(3600, 640, 1),
-            Beam(3600, 680, 1),
-            Beam(3600, 720, 1),
-            Beam(3600, 760, 1),
-            Beam(3740, 760, 1),
-
-            # secret
-            Beam(3920, 441, 0),
-            Beam(3920, 320, 0),
-
-            Beam(4200, 360, 2),
-            Beam(4200, 400, 2),
-
-            # way
-            Beam(3450, 920, 0),
-            Beam(3770, 921, 0),
-            Beam(4090, 922, 0),
-            Beam(4410, 923, 0),
-            Beam(4730, 924, 0),
-
-        ],
-        'beams2': [Beam2(580, 590),
-                   Beam2(640, 590),
-                   Beam2(1610, 390),
-                   Beam2(1650, 390),
-                   Beam2(1690, 390),
-                   Beam2(1730, 390),
-                   ],
-        'coins': [
-            Coin(960 + 60, 500 - 30),
-            Coin(1100 + 60, 400 - 30),
-            Coin(1260 + 60, 300 - 30),
-            Coin(1460 + 60, 300 - 30),
-            Coin(1610 + 60, 400 - 30),
-            Coin(1860 + 60, 500 - 30),
-
-            Coin(3800, 440 - 30),
-            Coin(3870, 440 - 30),
-            Coin(3940, 440 - 30),
-            Coin(4010, 440 - 30),
-            Coin(4080, 440 - 30),
-
-        ],
-        'ghosts': [],
-        'door': Door(4890, 925 - 200),
-        'background': Camera(),
-        'serce': [],
-
-    }
-
-
-def level_7() -> dict:
-    return {
-        'nb_level': 7,
-        'beams': [
-            Beam(990, 748, 1, rotation=0),
-            Beam(1149, 748, 1, rotation=0),
-            Beam(1307, 749, 1, rotation=0),
-            Beam(1102, 599, 1, rotation=0),
-            Beam(1102, 559, 1, rotation=0),
-            Beam(1103, 519, 1, rotation=0),
-            Beam(1102, 479, 1, rotation=0),
-            Beam(1260, 599, 1, rotation=0),
-            Beam(1260, 479, 1, rotation=0),
-            Beam(1102, 438, 1, rotation=0),
-            Beam(1100, 398, 1, rotation=0),
-            Beam(1100, 358, 1, rotation=0),
-            Beam(1258, 359, 1, rotation=0),
-            Beam(1098, 318, 1, rotation=0),
-            Beam(940, 317, 1, rotation=0),
-            Beam(781, 316, 1, rotation=0),
-            Beam(623, 315, 1, rotation=0),
-            Beam(38, 665, 1, rotation=0),
-            Beam(335, 314, 1, rotation=0),
-            Beam(511, 172, 1, rotation=0),
-            Beam(669, 172, 1, rotation=0),
-            Beam(828, 172, 1, rotation=0),
-            Beam(985, 171, 1, rotation=0),
-            Beam(1142, 171, 1, rotation=0),
-            Beam(1300, 171, 1, rotation=0),
-            Beam(1459, 172, 1, rotation=0),
-            Beam(1506, 318, 1, rotation=0),
-            Beam(1618, 174, 1, rotation=0),
-            Beam(1775, 174, 1, rotation=0),
-            Beam(2223, 170, 1, rotation=0),
-            Beam(2224, 210, 1, rotation=0),
-            Beam(2225, 252, 1, rotation=0),
-            Beam(2226, 292, 1, rotation=0),
-            Beam(2227, 332, 1, rotation=0),
-            Beam(2228, 373, 1, rotation=0),
-            Beam(2228, 413, 1, rotation=0),
-            Beam(2069, 412, 1, rotation=0),
-            Beam(2073, 453, 1, rotation=0),
-            Beam(2072, 493, 1, rotation=0),
-            Beam(1913, 494, 1, rotation=0),
-            Beam(1913, 534, 1, rotation=0),
-            Beam(1913, 574, 1, rotation=0),
-            Beam(1913, 614, 1, rotation=0),
-            Beam(1913, 653, 1, rotation=0),
-            Beam(1905, 783, 1, rotation=0),
-            Beam(2063, 784, 1, rotation=0),
-            Beam(2221, 784, 1, rotation=0),
-            Beam(1747, 783, 1, rotation=0),
-            Beam(1666, 319, 1, rotation=0),
-            Beam(2379, 785, 1, rotation=0),
-            Beam(196, 625, 1, rotation=0),
-            Beam(196, 665, 1, rotation=0),
-            Beam(198, 705, 1, rotation=0),
-            Beam(198, 746, 1, rotation=0),
-            Beam(356, 746, 1, rotation=0),
-            Beam(515, 746, 1, rotation=0),
-            Beam(673, 746, 1, rotation=0),
-            Beam(833, 747, 1, rotation=0),
-            Beam(20, 665, 1, rotation=0),
-            Beam(1429, 750, 1, rotation=0),
-            Beam(1550, 592, 1, rotation=1),
-            Beam(1549, 438, 1, rotation=1),
-            Beam(1551, 349, 1, rotation=1),
-            Beam(1430, 790, 1, rotation=0),
-            Beam(1591, 784, 1, rotation=0),
-            Beam(1586, 784, 1, rotation=0),
-            Beam(1589, 626, 1, rotation=1),
-            Beam(1587, 468, 1, rotation=1),
-            Beam(1591, 356, 1, rotation=1),
-            Beam(1783, 196, 1, rotation=1),
-            Beam(1742, 196, 1, rotation=1),
-            Beam(2348, 9, 1, rotation=3),
-        ],
-        'coins': [
-            Coin(1313, 554),
-            Coin(1314, 431),
-            Coin(2125, 349),
-            Coin(1961, 441),
-            Coin(382, 264),
-            Coin(533, 324),
-            Coin(2236, 124),
-            Coin(1671, 274),
-            Coin(1609, 274),
-            Coin(1542, 273),
-        ],
-        'beams2': [
-            Beam2(1528, 664, rotation=1),
-            Beam2(1530, 594, rotation=1),
-            Beam2(1531, 510, rotation=1),
-            Beam2(1527, 437, rotation=1),
-            Beam2(1632, 435, rotation=3),
-            Beam2(1631, 508, rotation=3),
-            Beam2(1628, 593, rotation=3),
-            Beam2(1632, 660, rotation=3),
-            Beam2(2329, 83, rotation=1),
-            Beam2(1824, 265, rotation=3),
-            Beam2(357, 673, rotation=3),
-        ],
-        'ghosts': [
-            Ghost(750, 80),
-            Ghost(1292, 80),
-        ],
-        'door': Door(2400, 785 - 200),
-        'background': Camera(),
-        'serce': [],
-
-    }
-
-
-def level_8():
-    return {
-        'nb_level': 8,
-        'beams': [
-            Beam(0, 1291, 1, rotation=0),
-            Beam(158, 1292, 1, rotation=0),
-            Beam(317, 1292, 1, rotation=0),
-            Beam(317, 1252, 1, rotation=0),
-            Beam(700, 1232, 1, rotation=0),
-            Beam(1049, 1132, 1, rotation=0),
-            Beam(1364, 977, 1, rotation=0),
-            Beam(1365, 1017, 1, rotation=0),
-            Beam(1365, 1057, 1, rotation=0),
-            Beam(1365, 1097, 1, rotation=0),
-            Beam(1364, 1137, 1, rotation=0),
-            Beam(1363, 1176, 1, rotation=0),
-            Beam(1363, 1214, 1, rotation=0),
-            Beam(1521, 1215, 1, rotation=0),
-            Beam(1679, 1215, 1, rotation=0),
-            Beam(1838, 1216, 1, rotation=0),
-            Beam(1996, 1216, 1, rotation=0),
-            Beam(2155, 1215, 1, rotation=0),
-            Beam(2313, 1216, 1, rotation=0),
-            Beam(2470, 1217, 1, rotation=0),
-            Beam(2468, 1177, 1, rotation=0),
-            Beam(2626, 1178, 1, rotation=0),
-            Beam(2630, 1217, 1, rotation=0),
-            Beam(2626, 1140, 1, rotation=0),
-            Beam(2626, 1101, 1, rotation=0),
-            Beam(2783, 1064, 1, rotation=0),
-            Beam(2940, 1025, 1, rotation=0),
-            Beam(2693, 866, 1, rotation=0),
-            Beam(2534, 866, 1, rotation=0),
-            Beam(2534, 827, 1, rotation=0),
-            Beam(2377, 827, 1, rotation=0),
-            Beam(2378, 1014, 1, rotation=0),
-            Beam(2225, 1012, 1, rotation=0),
-            Beam(2069, 1012, 1, rotation=0),
-            Beam(2220, 827, 1, rotation=0),
-            Beam(2067, 972, 1, rotation=0),
-            Beam(2066, 933, 1, rotation=0),
-            Beam(2064, 895, 1, rotation=0),
-            Beam(2063, 856, 1, rotation=0),
-            Beam(2063, 828, 1, rotation=0),
-            Beam(2062, 788, 1, rotation=0),
-            Beam(2061, 750, 1, rotation=0),
-            Beam(2059, 711, 1, rotation=0),
-            Beam(2060, 672, 1, rotation=0),
-            Beam(2060, 632, 1, rotation=0),
-            Beam(2059, 592, 1, rotation=0),
-            Beam(2059, 553, 1, rotation=0),
-            Beam(2058, 513, 1, rotation=0),
-            Beam(2057, 472, 1, rotation=0),
-            Beam(2056, 432, 1, rotation=0),
-            Beam(2218, 672, 1, rotation=0),
-            Beam(2056, 392, 1, rotation=0),
-            Beam(2217, 513, 1, rotation=0),
-            Beam(2055, 352, 1, rotation=0),
-            Beam(2214, 353, 1, rotation=0),
-            Beam(2055, 312, 1, rotation=0),
-            Beam(2054, 273, 1, rotation=0),
-            Beam(1897, 272, 1, rotation=0),
-            Beam(1738, 272, 1, rotation=0),
-            Beam(1736, 232, 1, rotation=0),
-            Beam(1736, 191, 1, rotation=0),
-            Beam(1735, 151, 1, rotation=0),
-            Beam(1735, 111, 1, rotation=0),
-            Beam(1893, 111, 1, rotation=0),
-            Beam(2053, 111, 1, rotation=0),
-            Beam(2615, 352, 1, rotation=0),
-            Beam(2988, 335, 1, rotation=0),
-            Beam(3352, 360, 1, rotation=0),
-            Beam(3731, 481, 1, rotation=0),
-            Beam(4049, 646, 1, rotation=0),
-            Beam(4207, 647, 1, rotation=0),
-            Beam(4366, 646, 1, rotation=0),
-            Beam(3058, 867, 1, rotation=1),
-            Beam(3056, 710, 1, rotation=1),
-            Beam(595, 1231, 1, rotation=0),
-            Beam(975, 1132, 1, rotation=0),
-            Beam(1281, 1018, 1, rotation=0),
-            Beam(2533, 352, 1, rotation=0),
-            Beam(2926, 335, 1, rotation=0),
-            Beam(3309, 359, 1, rotation=0),
-            Beam(3660, 480, 1, rotation=0),
-        ],
-        'coins': [
-            Coin(3780, 432),
-            Coin(758, 1187),
-            Coin(1105, 1090),
-            Coin(1413, 937),
-            Coin(2116, 1161),
-            Coin(2331, 939),
-            Coin(2277, 775),
-            Coin(3403, 315),
-            Coin(660, 1188),
-            Coin(1913, 235),
-            Coin(1913, 192),
-            Coin(1983, 192),
-            Coin(1986, 236),
-        ],
-        'beams2': [
-            Beam2(2071, 1053, rotation=2),
-            Beam2(2111, 1053, rotation=2),
-            Beam2(2151, 1053, rotation=2),
-            Beam2(2191, 1053, rotation=2),
-        ],
-        'ghosts': [
-            Ghost(2557, 745),
-        ],
-        'serce': [
-            Serce(2244, 574),
-        ],
-        'door': Door(4416, 446),
-
-        'background': Camera(),
-
-    }
-
-
-def level_9():
-    return {
-        'nb_level': 9,
-        'beams': [
-            Beam(1, 905, 1, rotation=0),
-            Beam(159, 905, 1, rotation=0),
-            Beam(316, 905, 1, rotation=0),
-            Beam(475, 904, 1, rotation=0),
-            Beam(741, 1011, 1, rotation=0),
-            Beam(1042, 946, 1, rotation=0),
-            Beam(1323, 862, 1, rotation=0),
-            Beam(1623, 835, 1, rotation=0),
-            Beam(1883, 923, 1, rotation=0),
-            Beam(2113, 994, 1, rotation=0),
-            Beam(2354, 1070, 1, rotation=0),
-            Beam(2631, 1077, 1, rotation=0),
-            Beam(2914, 1080, 1, rotation=0),
-            Beam(3073, 1081, 1, rotation=0),
-            Beam(3231, 1080, 1, rotation=0),
-            Beam(3390, 1080, 1, rotation=0),
-            Beam(3547, 1080, 1, rotation=0),
-            Beam(3703, 1079, 1, rotation=0),
-            Beam(3861, 1078, 1, rotation=0),
-            Beam(4020, 1079, 1, rotation=0),
-            Beam(2875, 1080, 1, rotation=1),
-            Beam(2875, 1119, 1, rotation=1),
-            Beam(2914, 1238, 1, rotation=0),
-            Beam(3071, 1239, 1, rotation=0),
-            Beam(3230, 1239, 1, rotation=0),
-            Beam(3388, 1240, 1, rotation=0),
-            Beam(3547, 1241, 1, rotation=0),
-            Beam(3705, 1241, 1, rotation=0),
-            Beam(3863, 1242, 1, rotation=0),
-            Beam(4022, 1242, 1, rotation=0),
-            Beam(4021, 1040, 1, rotation=0),
-            Beam(4372, 989, 1, rotation=0),
-            Beam(4372, 1029, 1, rotation=0),
-            Beam(4661, 933, 1, rotation=0),
-            Beam(4661, 972, 1, rotation=0),
-            Beam(4883, 877, 1, rotation=0),
-            Beam(4883, 918, 1, rotation=0),
-            Beam(4848, 1130, 1, rotation=0),
-            Beam(4800, 1129, 1, rotation=0),
-            Beam(4632, 1285, 1, rotation=0),
-            Beam(4236, 1372, 1, rotation=0),
-            Beam(4340, 1191, 1, rotation=0),
-            Beam(4832, 1531, 1, rotation=0),
-            Beam(4653, 1683, 1, rotation=0),
-            Beam(4395, 1687, 1, rotation=0),
-            Beam(4141, 1690, 1, rotation=0),
-            Beam(3914, 1690, 1, rotation=0),
-            Beam(3754, 1690, 1, rotation=0),
-            Beam(3595, 1690, 1, rotation=0),
-            Beam(3851, 1690, 1, rotation=0),
-            Beam(3437, 1690, 1, rotation=0),
-            Beam(3279, 1690, 1, rotation=0),
-            Beam(3120, 1690, 1, rotation=0),
-            Beam(2961, 1690, 1, rotation=0),
-        ],
-        'coins': [
-            Coin(1100, 895),
-            Coin(1677, 789),
-            Coin(2159, 949),
-            Coin(2949, 1187),
-            Coin(3084, 1186),
-            Coin(3230, 1187),
-            Coin(3379, 1189),
-            Coin(3518, 1188),
-            Coin(3664, 1188),
-            Coin(3819, 1190),
-            Coin(3981, 1186),
-            Coin(4926, 834),
-            Coin(3735, 1646),
-            Coin(3509, 1644),
-            Coin(3289, 1639),
-        ],
-        'beams2': [
-            Beam2(3421, 1671, rotation=0),
-            Beam2(3624, 1670, rotation=0),
-            Beam2(3832, 1673, rotation=0),
-            Beam2(3199, 1671, rotation=0),
-        ],
-        'ghosts': [
-        ],
-        'serce': [
-            Serce(4074, 1151),
-        ],
-        'door': Door(2978, 1489),
-        "background": Camera(),
-    }
-
-
-def level_10():
-    return {
-        'nb_level': 10,
-        "spawn": (19, 561),
-        'beams': [
-            Beam(2, 652, 1, rotation=0),
-            Beam(160, 652, 1, rotation=0),
-            Beam(319, 652, 1, rotation=0),
-            Beam(478, 652, 1, rotation=0),
-            Beam(637, 652, 1, rotation=0),
-            Beam(637, 612, 1, rotation=0),
-            Beam(797, 652, 1, rotation=0),
-            Beam(797, 690, 1, rotation=0),
-            Beam(799, 730, 1, rotation=0),
-            Beam(800, 770, 1, rotation=0),
-            Beam(1157, 651, 1, rotation=0),
-            Beam(1156, 691, 1, rotation=0),
-            Beam(1155, 730, 1, rotation=0),
-            Beam(1155, 769, 1, rotation=0),
-            Beam(1316, 651, 1, rotation=0),
-            Beam(1316, 611, 1, rotation=0),
-            Beam(1315, 571, 1, rotation=0),
-            Beam(1314, 531, 1, rotation=0),
-            Beam(1312, 492, 1, rotation=0),
-            Beam(1311, 452, 1, rotation=0),
-            Beam(1310, 412, 1, rotation=0),
-            Beam(1309, 372, 1, rotation=0),
-            Beam(1308, 332, 1, rotation=0),
-            Beam(1307, 293, 1, rotation=0),
-            Beam(1149, 293, 1, rotation=0),
-            Beam(990, 292, 1, rotation=0),
-            Beam(831, 291, 1, rotation=0),
-            Beam(673, 291, 1, rotation=0),
-            Beam(515, 291, 1, rotation=0),
-            Beam(357, 291, 1, rotation=0),
-            Beam(200, 291, 1, rotation=0),
-            Beam(43, 290, 1, rotation=0),
-            Beam(1, 291, 1, rotation=0),
-            Beam(631, 330, 1, rotation=0),
-            Beam(1155, 810, 1, rotation=0),
-            Beam(1157, 851, 1, rotation=0),
-            Beam(1159, 891, 1, rotation=0),
-            Beam(1161, 930, 1, rotation=0),
-            Beam(1160, 970, 1, rotation=0),
-            Beam(1001, 970, 1, rotation=0),
-            Beam(843, 969, 1, rotation=0),
-            Beam(684, 968, 1, rotation=0),
-            Beam(525, 968, 1, rotation=0),
-            Beam(368, 969, 1, rotation=0),
-            Beam(637, 691, 1, rotation=0),
-            Beam(376, 692, 1, rotation=0),
-            Beam(369, 1009, 1, rotation=2),
-            Beam(371, 1048, 1, rotation=0),
-            Beam(375, 1233, 1, rotation=0),
-            Beam(215, 1234, 1, rotation=0),
-            Beam(58, 1234, 1, rotation=0),
-            Beam(1, 1234, 1, rotation=0),
-            Beam(347, 1233, 1, rotation=0),
-            Beam(657, 1235, 1, rotation=0),
-            Beam(931, 1198, 1, rotation=0),
-            Beam(1256, 1244, 1, rotation=0),
-            Beam(1413, 1205, 1, rotation=0),
-            Beam(1571, 1164, 1, rotation=0),
-            Beam(1841, 1168, 1, rotation=0),
-            Beam(2001, 1210, 1, rotation=0),
-            Beam(2160, 1250, 1, rotation=0),
-            Beam(2320, 1292, 1, rotation=0),
-            Beam(2476, 1253, 1, rotation=0),
-            Beam(2469, 1046, 1, rotation=0),
-            Beam(2636, 1295, 1, rotation=0),
-            Beam(2794, 1335, 1, rotation=0),
-            Beam(3167, 1413, 1, rotation=0),
-            Beam(3009, 1412, 1, rotation=0),
-            Beam(3326, 1413, 1, rotation=0),
-        ],
-        'coins': [
-            Coin(1202, 599),
-            Coin(563, 817),
-            Coin(845, 1116),
-            Coin(1771, 1063),
-        ],
-        'beams2': [
-            Beam2(640, 594, rotation=0),
-            Beam2(680, 594, rotation=0),
-            Beam2(723, 595, rotation=0),
-            Beam2(752, 594, rotation=0),
-            Beam2(633, 370, rotation=2),
-            Beam2(676, 370, rotation=2),
-            Beam2(717, 371, rotation=2),
-            Beam2(747, 371, rotation=2),
-            Beam2(641, 732, rotation=2),
-            Beam2(686, 732, rotation=2),
-            Beam2(727, 733, rotation=2),
-            Beam2(754, 732, rotation=2),
-            Beam2(377, 732, rotation=2),
-            Beam2(418, 733, rotation=2),
-            Beam2(465, 733, rotation=2),
-            Beam2(490, 734, rotation=2),
-            Beam2(1418, 1188, rotation=0),
-            Beam2(1456, 1187, rotation=0),
-            Beam2(1496, 1187, rotation=0),
-            Beam2(1525, 1187, rotation=0),
-            Beam2(2004, 1191, rotation=0),
-            Beam2(2044, 1191, rotation=0),
-            Beam2(2085, 1192, rotation=0),
-            Beam2(2116, 1191, rotation=0),
-            Beam2(2636, 1277, rotation=0),
-            Beam2(2674, 1277, rotation=0),
-            Beam2(2712, 1276, rotation=0),
-            Beam2(2751, 1277, rotation=0),
-            Beam2(2468, 1086, rotation=2),
-            Beam2(2509, 1086, rotation=2),
-            Beam2(2549, 1086, rotation=2),
-            Beam2(2587, 1085, rotation=2),
-            Beam2(2316, 1274, rotation=0),
-            Beam2(2354, 1274, rotation=0),
-            Beam2(2394, 1274, rotation=0),
-            Beam2(2434, 1274, rotation=0),
-        ],
-        'ghosts': [
-            Ghost(564, 889),
-        ],
-        'serce': [
-        ],
-        'door': Door(3379, 1214),
-        "background": Camera(),
-
-    }
 
 
 class Game:
@@ -753,6 +24,9 @@ class Game:
 
         self.label_score = Text(970, 10)
         self.score = 0
+
+        self.skins = {"John": {"acquired": True, "price": 0}, "Jan": {"acquired": False, "price": 100}}
+        self.active_skin = "John"
 
     def load_level(self, level: dict):
         self.current_level = level["nb_level"]
@@ -799,7 +73,7 @@ class Game:
                 run = False
                 self.player.ver_velocity = 0
 
-        self.resume(self.current_level)
+        self.menu(self.current_level)
 
     def update(self, delta):
         keys = pygame.key.get_pressed()
@@ -854,7 +128,7 @@ class Game:
             print("You win!")
             pygame.quit()
 
-    def resume(self, current_level):
+    def menu(self, current_level):
         run = True
         clock = pygame.time.Clock()
         background = pygame.image.load('Sprites/main menu/menu_background.png').convert_alpha()
@@ -866,7 +140,7 @@ class Game:
 
         play_button = Button(515, 500, "Sprites/next_level/next")
         shop_button = Button(900, 500, "Sprites/next_level/next")
-        menu_button = Button(100, 500, "Sprites/next_level/next")
+        level_menu_button = Button(100, 500, "Sprites/next_level/next")
 
         font = pygame.font.SysFont('None', 100)
         text = font.render('Game Over', True, RED)
@@ -883,24 +157,22 @@ class Game:
                 self.run()
                 return
 
-            if menu_button.tick():
-                run = False
-                self.menu_level()
+            if level_menu_button.tick():
+                self.level_selection()
                 return
 
             if shop_button.tick():
-                run = False
-                self.shop(self.score, current_level)
+                self.shop()
 
             window.blit(background, (0, 0))
             window.blit(text, (400, 300))
             play_button.draw(window)
             shop_button.draw(window)
-            menu_button.draw(window)
+            level_menu_button.draw(window)
 
             pygame.display.flip()
 
-    def menu_level(self):
+    def level_selection(self):
         n = len(self.levels)
         run = True
         clock = pygame.time.Clock()
@@ -938,62 +210,77 @@ class Game:
 
             pygame.display.update()
 
-    def shop(self, score, level):
+    def shop(self):
         run = True
-        clock = 0
         text = Text(950, 10)
         background = pygame.image.load('Sprites/main menu/menu_background.png')
-        postacie = ['John', 'Jan']
-        active = [True, False]
-        price = [0, 2]
-        shop_button = Button(100, 100, "Sprites/next_level/next")
-        active_button = Button(100, 350, "Sprites/active")
-        lock_button = Button(100, 350, "Sprites/lock")
-        buy_button = Button(800, 350, "Sprites/buy")
-        left = Button(50, 500, "Sprites/strzalka")
-        i = 0
-        right = Button(1000, 500, "Sprites/strzalkapr")
+
+        current_index = 0
+        available_skins = list(self.skins.keys())
+        current_skin = available_skins[current_index]
+
+        skin_imgs = [pygame.image.load(f"Sprites/characters/{skin}/stand.png").convert_alpha() for skin in
+                     available_skins]
+
+        btn_goback = ButtonImg(20, 200, "Sprites/buttons/back")
+        btn_left = ButtonImg(200, 400, "Sprites/strzalka")
+        btn_right = ButtonImg(1000, 400, "Sprites/strzalkapr")
+        btn_buy = ButtonLevelMenu(700, 600, "BUY")
+        btn_equip = ButtonLevelMenu(420, 600, "ACTIVATE", width=200)
+
+        clock = pygame.time.Clock()
         while run:
-            clock += pygame.time.Clock().tick(60) / 1000  # maksymalnie 60 fps
+            clock.tick(60)
             events = pygame.event.get()
             for event in events:
-                if event.type == pygame.QUIT:  # jeśli gracz zamknie okienko
-                    run = False
+                if event.type == pygame.QUIT:
+                    pygame.quit()
 
-            if shop_button.tick():
-                self.resume(level)
-            if active_button.tick() and active[i]:
-                player = Player(postacie[i])
-            if buy_button.tick() and score - price[i] >= 0:
-                score -= price[i]
-                price[i] = 0
-                active[i] = True
+            if btn_left.tick(events):
+                current_index = (current_index - 1) % len(available_skins)
+                current_skin = available_skins[current_index]
+            if btn_right.tick(events):
+                current_index = (current_index + 1) % len(available_skins)
+                current_skin = available_skins[current_index]
+            if btn_buy.tick(events) and not self.skins[current_skin]["acquired"]:
+                price = self.skins[current_skin]["price"]
+                if self.score >= price:
+                    print("bought")
+                    self.score -= price
+                    self.skins[current_skin]["acquired"] = True
 
-            if left.tick():
-                if i > 0:
-                    i -= 1
-            if right.tick():
-                if i < len(postacie) - 1:
-                    i += 1
+            if btn_equip.tick(events):
+                if self.skins[current_skin]["acquired"] and current_skin != self.active_skin:
+                    print("equipped")
+                    self.active_skin = current_skin
+                    self.player.load_skin(current_skin)
+
+            if btn_goback.tick(events):
+                run = False
+
+            btn_goback.update()
+            btn_left.update()
+            btn_right.update()
+
+            if current_skin == self.active_skin:
+                btn_equip.text = "USING"
+            else:
+                btn_equip.text = "ACTIVATE"
 
             window.blit(background, (0, 0))
+            # blit price
+            font = pygame.font.SysFont('None', 50)
+            price = font.render(f"Price: {self.skins[current_skin]['price']}", True, (230, 225, 240))
+            window.blit(price, (550, 500))
+            window.blit(skin_imgs[current_index], skin_imgs[current_index].get_rect(center=(600, 400)))
+            btn_left.draw(window)
+            btn_right.draw(window)
+            btn_buy.draw(window)
+            btn_equip.draw(window)
+            btn_goback.draw(window)
+            text.draw(window, self.score)
 
-            pygame.draw.rect(window, [200, 200, 200],
-                             pygame.Rect(360, 300, 400, 400))
-            window.blit(pygame.image.load(f'Sprites/{postacie[i]}/stand.png'),
-                        (560, 500))
-            shop_button.draw(window)
-            left.draw(window)
-            right.draw(window)
-            if active[i]:
-                active_button.draw(window)
-            else:
-                lock_button.draw(window)
-
-            buy_button.draw(window)
-            text.draw(window, score)
-
-            pygame.display.update()
+            pygame.display.flip()
 
 
 # def level_1(score, level, player_obj):
@@ -1175,7 +462,6 @@ class Game:
 #             level += 1
 #             resume(score, level, player)
 
-
 # def level_3(score, level, player_obj):
 #     run = True
 #     pause = False
@@ -1278,7 +564,6 @@ class Game:
 #             level += 1
 #             resume(score, level, player)
 
-
 # def level_4(score, level, player_obj):
 #     run = True
 #     pause = False
@@ -1378,7 +663,6 @@ class Game:
 #             level += 1
 #             resume(score, level, player)
 
-
 # def level_5(score, level, player_obj):
 #     run = True
 #     pause = False
@@ -1461,7 +745,6 @@ class Game:
 #             level += 1
 #             resume(score, level, player)
 
-
 # def resume(score, level, player: Player):
 #     run = True
 #     clock = 0
@@ -1511,7 +794,6 @@ class Game:
 #         menu_button.draw(window)
 #
 #         pygame.display.update()
-
 
 # def menu(score, level, player: Player):
 #     start_level = {1: level_1,
@@ -1786,4 +1068,4 @@ def level_editor(level_to_edit):
 
 
 if __name__ == "__main__":
-    main(level_10)
+    main(level_1)

@@ -1,6 +1,5 @@
 import pygame
 from math import floor, sqrt, degrees, asin
-from random import randint
 from tools.colors import *
 
 resolution = (1280, 720)
@@ -131,7 +130,7 @@ class ButtonLevelMenu:
     Button class for level menu (optimized for it)
     """
 
-    def __init__(self, x, y, text):
+    def __init__(self, x, y, text, width=100):
         """
         :param x: x_coord
         :param y: y_coord
@@ -146,7 +145,7 @@ class ButtonLevelMenu:
         super().__init__()
         self.x = x
         self.y = y
-        self.w = 100
+        self.w = width
         self.h = 100
 
         self.text = text
@@ -156,7 +155,7 @@ class ButtonLevelMenu:
 
         self.textcolor = DARKWHITE
 
-        self.hitbox = pygame.Rect(self.x, self.y, 100, 100)
+        self.hitbox = pygame.Rect(self.x, self.y, self.w, self.h)
 
         self.selected = False
 
@@ -187,6 +186,56 @@ class ButtonLevelMenu:
                 self.selected = True
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1 and self.selected:
                 if self.hitbox.collidepoint(pygame.mouse.get_pos()):
+                    return True
+                else:
+                    self.selected = False
+
+
+class ButtonImg:
+    """
+    Button class for level menu (optimized for it)
+    """
+
+    def __init__(self, x, y, file):
+        """
+        :param x: x_coord
+        :param y: y_coord
+        :param w: max width
+        :param text: text
+        :param back_color: can be (-1,-1,-1) for transparent
+        :param text_color: text color
+        :param font: font
+        :param onclick: function to call when clicked
+        """
+
+        super().__init__()
+        self.x = x
+        self.y = y
+
+        self.img = pygame.image.load(f"{file}.png")
+        self.img_hover = pygame.image.load(f"{file}_hovered.png")
+
+        self.current_img = self.img
+        self.rect = self.img.get_rect(topleft=(self.x, self.y))
+        self.selected = False
+
+    def update(self):
+        if pygame.mouse.get_pressed()[0]:
+            if self.rect.collidepoint(pygame.mouse.get_pos()) and self.selected:
+                self.current_img = self.img_hover
+        else:
+            self.current_img = self.img
+
+    def draw(self, win):
+        win.blit(self.current_img, self.rect)
+
+    def tick(self, events):
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.rect.collidepoint(
+                    pygame.mouse.get_pos()):
+                self.selected = True
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1 and self.selected:
+                if self.rect.collidepoint(pygame.mouse.get_pos()):
                     return True
                 else:
                     self.selected = False
@@ -258,29 +307,17 @@ class Text:
 class Player(Physic, Health):
 
     def __init__(self, name):
-
-        self.stand_right_img = pygame.image.load(
-            f'Sprites/{name}/stand.png')  # normalna grafika
-        self.stand_left_img = pygame.transform.flip(
-            pygame.image.load(f'Sprites/{name}/stand.png'), True, False)
-        self.init_physics()
         Health.__init__(self, 100)
-        self.jump_right_img = pygame.image.load(
-            f'Sprites/{name}/jump.png')  # grafika skoku
-        self.jump_left_img = pygame.transform.flip(
-            pygame.image.load(f'Sprites/{name}/jump.png'), True,
-            False)  # grafika skoku
-        self.walk_right_img = [
-            pygame.image.load(f'Sprites/{name}/klatka0{x}.png')
-            for x in range(1, 7)
-        ]  # animacja chodzenia
-        self.walk_left_img = [
-            pygame.transform.flip(
-                pygame.image.load(f'Sprites/{name}/klatka0{x}.png'), True,
-                False) for x in range(1, 7)
-        ]  # animacja chodzenia
+        self.stand_right_img = None
+        self.stand_left_img = None
+        self.jump_right_img = None
+        self.jump_left_img = None
+        self.walk_right_img = None
+        self.walk_left_img = None
         self.walk_index = 0
         self.direction = 1
+        self.load_skin(name)
+        self.init_physics()
 
     def tick(self, keys, beams, beams2, delta_tm):  # wykonuje się raz na powtórzenie pętli
         self.physic_tick(beams, beams2)
@@ -332,6 +369,18 @@ class Player(Physic, Health):
         width = self.stand_right_img.get_width()  # szerokość
         height = self.stand_right_img.get_height()  # wysokość
         Physic.__init__(self, 0, 0, width, height, 0.5, 5)
+
+    def load_skin(self, name):
+        self.stand_right_img = pygame.image.load(f'Sprites/characters/{name}/stand.png')
+        self.stand_left_img = pygame.transform.flip(pygame.image.load(f'Sprites/characters/{name}/stand.png'), True, False)
+        self.jump_right_img = pygame.image.load(f'Sprites/characters/{name}/jump.png')
+        self.jump_left_img = pygame.transform.flip(pygame.image.load(f'Sprites/characters/{name}/jump.png'), True, False)
+        self.walk_right_img = [pygame.image.load(f'Sprites/characters/{name}/klatka0{x}.png') for x in range(1, 7)]
+        self.walk_left_img = [pygame.transform.flip(pygame.image.load(f'Sprites/characters/{name}/klatka0{x}.png'), True, False)
+                              for x in range(1, 7)]
+        self.walk_index = 0
+        self.direction = 1
+        self.init_physics()
 
 
 class Ghost(Physic, Health):
@@ -449,7 +498,7 @@ class Camera:
     def tick(self, player):
         """smooth camera movement"""
         half_screen_width = resolution[0] / 2
-        three_quarter_screen_height = resolution[1] * 5/8
+        three_quarter_screen_height = resolution[1] * 5 / 8
         # horizontal movement
         target_x_cord = 0
         if player.x_cord < half_screen_width:
@@ -470,7 +519,10 @@ class Camera:
         else:
             target_y_cord = three_quarter_screen_height - player.y_cord
 
-        self.y_cord += (target_y_cord - self.y_cord) * 0.01
+        if target_y_cord - self.y_cord > 0:
+            self.y_cord += (target_y_cord - self.y_cord) * 0.01
+        else:
+            self.y_cord += (target_y_cord - self.y_cord) * 0.03
 
     def draw(self, win):
         win.blit(self.image, (self.x_cord, self.y_cord))
